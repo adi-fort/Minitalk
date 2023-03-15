@@ -6,7 +6,7 @@
 /*   By: adi-fort <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:57:51 by adi-fort          #+#    #+#             */
-/*   Updated: 2023/03/13 17:47:29 by adi-fort         ###   ########.fr       */
+/*   Updated: 2023/03/15 15:37:04 by adi-fort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,26 +30,24 @@ int	main(int ac, char *av[])
 		pid = ft_atoi(av[1]);
 		while (av[2][i])
 		{	
-			bit = 0;
-			while (bit != 8)
+			bit = 7;
+			while (bit >= 0)
 			{
-				printf("%d", av[2][i] % 2);
-				if ((av[2][i] % 2) == 1)
+				//printf("%d\n", (av[2][i] >> bit) % 2);
+				if (((av[2][i] >> bit) % 2) == 1)
 				{
 					kill(pid, SIGUSR1);
 					usleep(1000);
-					av[2][i] = (av[2][i] / 2);
 				}
 				else
 				{
 					kill(pid, SIGUSR2);
 					usleep(1000);
-					av[2][i] = (av[2][i] / 2);
 				}
-				bit++;
+				bit--;
 			}
-			printf("\n");
-			printf("%s\n", av[2]);
+			//printf("\n");
+			//printf("%s\n", av[2]);
 			i++;
 		}
 	}

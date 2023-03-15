@@ -6,7 +6,7 @@
 /*   By: adi-fort <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 11:54:16 by adi-fort          #+#    #+#             */
-/*   Updated: 2023/03/13 17:25:25 by adi-fort         ###   ########.fr       */
+/*   Updated: 2023/03/15 15:31:22 by adi-fort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,6 @@ void	ft_handler(int signum)
 	static int	i;
 	static int	c;
 
-	if (i == 8)
-	{
-		ft_printf(">%c\n", c);
-		i = 0;
-		c = 0;
-	}
 	if (signum == SIGUSR1)
 	{
 		c *= 2;
@@ -37,8 +31,13 @@ void	ft_handler(int signum)
 	{
 		i++;
 		c *= 2;
+	}	
+	if (i == 8)
+	{
+		ft_printf("%c", c);
+		i = 0;
+		c = 0;
 	}
-	printf("i: %d c: %d\n", i, c);
 }
 
 int	main(void)
